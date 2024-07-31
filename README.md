@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+# Rick And Morty Web
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+created by: Nikollai Hernandez.\
+[nikollaihernandez@gmail.com](mailto:nikollaihernandez@gmail.com)
 
 ## Available Scripts
 
@@ -39,32 +40,89 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## GraphQl Queries
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Characters
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    query Characters($page: Int, $query: String, $status: String, $gender: String, $specie: String) {
+        characters(page: $page, filter: { name: $query, status: $status, gender: $gender, species: $specie }) {
+            results {
+                id
+                name
+                image
+                species
+            }
+            info {
+                count
+                pages
+                next
+                prev
+            }
+        }
+    }
 
-### Code Splitting
+#### Parameters
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**`$page`**: (Int, optional): The page number to retrieve in the paginated result.\
+**`$query`**: (String, optional): Filter by character name.\
+**`$status`**: (String, optional): Filter by character status (e.g., "Alive", "Dead", "Unknown").\
+**`$gender`**: (String, optional): Filter by character gender (e.g., "Male", "Female", "Unknown").\
+**`$species`**: (String, optional): Filter by character species (e.g., "Human", "Alien", "Robot", "Animal").
 
-### Analyzing the Bundle Size
+#### Response
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+##### `results` {
 
-### Making a Progressive Web App
+**`id`**: (ID): Unique identifier of the character.\
+**`name`**: (String): Name of the character.\
+**`image`**: (String): URL of the character's image.\
+**`species`**: (String): Species of the character.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+}
 
-### Advanced Configuration
+##### `info` { 
+**`count`**: (Int): Total number of characters available.\
+**`pages`**: (Int): Total number of pages.\
+**`next`**: (Int or null): Page number of the next set of results, or null if no more pages.\
+**`prev`**: (Int or null): Page number of the previous set of results, or null if no previous pages.\
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+}
 
-### Deployment
+### Character details
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+    query GetCharacter($id: ID!) {
+        character(id: $id) {
+            id
+            name
+            image
+            species
+            status
+            gender
+            type
+            episode {
+                id
+            }
+        }
+    }
 
-### `npm run build` fails to minify
+#### Parameters
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**`$id`**: (ID!): The unique identifier of the character. This parameter is required (! indicates it is non-nullable).
+
+#### Response
+
+**`id`**: (ID): The unique identifier of the character.\
+**`name`**: (String): The name of the character.\
+**`image`**: (String): The URL of the character's image.\
+**`species`**: (String): The species of the character (e.g., "Human", "Alien").\
+**`status`**: (String): The status of the character (e.g., "Alive", "Dead").\
+**`gender`**: (String): The gender of the character (e.g., "Male", "Female").\
+**`type`**: (String): The type of the character, if applicable.\
+**`episode`**: An array of episodes the character has appeared in. Each episode object contains:\
+-----**`id`**: (ID): The unique identifier of the episode.\
+
+## Screenshots
+
+![img.png](img.png)
+
+![img_1.png](img_1.png)
