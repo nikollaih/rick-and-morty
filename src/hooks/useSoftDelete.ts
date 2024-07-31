@@ -26,9 +26,8 @@ const useSoftDelete = () => {
 
     // Check if a given id is deleted
     const isDeleted = (characterId: number) => {
-        let localStorageDeleted = structuredClone(deletedValue);
-        return localStorageDeleted.some((del) => del === characterId);
-    }
+        return deletedValue.includes(characterId);
+    };
 
     return {deletedValue, isDeleted, handleDeleted, changedValue};
 }

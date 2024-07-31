@@ -24,7 +24,7 @@ const CharacterCard = ({character}: { character: ICharacterCard }) => {
         <div className="p-5">
             <div className="flex justify-between items-start">
                 <h5 className="text-2xl tracking-tight text-gray-900 -mt-1">{character.name}</h5>
-                <FavoriteButton characterId={character.id} size={"6"}/>
+                <FavoriteButton character={character} size={"6"}/>
             </div>
             <p className="mb-4 text-gray-500">{character.species}</p>
             <hr className="mb-4"/>

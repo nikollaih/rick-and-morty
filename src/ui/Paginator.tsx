@@ -18,6 +18,7 @@ const Paginator: React.FC<IPaginatorProps> = ({ pages }) => {
         }
     };
 
+    // Generate an array with the pages list
     const getDisplayedPages = () => {
         const pageNumbers = [];
 

@@ -59,12 +59,13 @@ const ViewCharacterPage = () => {
     }
 
     const { character: { id, name, image, status, species, gender, type, episode } } = data;
+    const { character } = data;
 
     return <div className="grid grid-cols-1 max-w-md mx-auto">
         <div className="col-span-1 relative">
             <img src={image} alt={name} className="rounded-full mx-auto shadow-lg hover:scale-110" width={200} height={200} />
-            <div className="absolute right-0 top-0 cursor-pointer">
-                <FavoriteButton characterId={id} />
+            <div className="absolute right-24 top-0 cursor-pointer">
+                <FavoriteButton character={character} />
             </div>
         </div>
         <div className="col-span-1 text-center mt-5">

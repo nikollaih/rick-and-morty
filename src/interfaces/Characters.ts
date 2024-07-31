@@ -7,3 +7,10 @@ export interface ICharacterCard {
     gender: string,
     status: string,
 }
+
+export interface IFavoriteCharacterFields {
+    id: number;
+    name: string;
+    image: string;
+    species: string;
+};
